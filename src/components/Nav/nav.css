@@ -1,0 +1,25 @@
+.navigation {
+    display:flex;
+    justify-content: space-around;
+    height: 12vh;
+    background-color: rgb(90, 158, 214);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+/* .instruction {
+    display: flex;
+    align-items: center;
+} */
+
+.nav_links {
+    display: flex;
+    align-items: center;
+}
+
+.link:not(:last-child) {
+margin-right: 30px;
+}
+
