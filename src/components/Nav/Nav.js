@@ -10,8 +10,6 @@ function Nav(props) {
             <div className="logo">
                 <h3>Click on any Picture to start</h3>
             </div>
-
-
             <div className="nav_links">
                 <div className="link" id="yourScore">Your Score: {props.correctGuesses}</div>
                 <div className="link" id="maxScore">Maximum Score: </div>

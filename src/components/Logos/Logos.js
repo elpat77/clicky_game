@@ -22,34 +22,65 @@ import Milan from '../../Images/Milan.png'
 
 
 
-const picArr = [{ "id": "aguilas", "src": Aguilas }, { "id": "barcelona", "src": Barza }]
+const picArr = [
+    { "id": "aguilas", "src": Aguilas },
+    { "id": "barcelona", "src": Barza },
+    { "id": "bayern", "src": Bayern },
+    { "id": "chelsea", "src": Chelsea },
+    { "id": "juventus", "src": Juve },
+    { "id": "liverpool", "src": Liverpool },
+    { "id": "manchester", "src": ManU },
+    { "id": "psg", "src": PSG },
+    { "id": "river", "src": River },
+    { "id": "realmadrid", "src": RM },
+    { "id": "roma", "src": Roma },
+    { "id": "wolves", "src": Wolves },
+    { "id": "ajax", "src": Ajax },
+    { "id": "arsenal", "src": Arsenal },
+    { "id": "galaxy", "src": Galaxy },
+    { "id": "milan", "src": Milan },
+]
 
 class Logos extends Component {
 
     constructor() {
         super();
         this.state = {
-            correct: true,
-            logoData: {},
             selected: [],
+            correct: true,
             correctGuesses: 0,
             maxScore: 0,
+            shuffle: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
         };
-        this.addToCounter = this.addToCounter.bind(this);
-        this.setLogoData = this.setLogoData.bind(this);
+        this.addToScore = this.addToScore.bind(this);
     }
-    addToCounter(e) {
-        console.log("on this...", e.target.id)
+
+    addToScore(e) {
+        let display = this.state.shuffle;
+        console.log("arr", display)
+        display.sort(() => {
+            return 0.5 - Math.random();
+        });
+
+        console.log("clicked on...", e.target.id)
         let selected = this.state.selected;
-        let correctGuesses = this.state.correctGuesses;
+        console.log("selected array", selected)
+        let correctGuesses = this.state.correctGuesses + 1;
+
         for (let i = 0; i < selected.length; i++) {
+            //break game, calculate scores, and restart
             if (selected[i] === e.target.id) {
                 console.log("oh! selected before...")
                 this.setState({ selected: [], correctGuesses: 0 })
                 return;
-                //break gaem, calculate scores, and restart
+
             } else {
-                correctGuesses++;
+                this.setState({
+                    shuffle: display,
+                })
+
+                console.log("correct");
+
             }
         }
         selected.push(e.target.id)
@@ -64,7 +95,7 @@ class Logos extends Component {
     render() {
 
         let total = picArr.map((item, index) => {
-            return <img key={index} id={item.id} className="logos" src={item.src} onClick={this.addToCounter} />
+            return <img key={index} id={item.id} className="logos" src={item.src} onClick={this.addToScore} />
         })
         return (
             <div>
@@ -72,26 +103,6 @@ class Logos extends Component {
                 {total}
             </div>
         )
-        return [
-            <div className="App1">
-                <img id="Aguilas" className="logos" src={Aguilas} alt="logo" onClick={this.addToCounter} />
-                <img id="Barza" className="logos" src={Barza} alt="logo" onClick={this.addToCounter} />
-                <img id="Bayern" className="logos" src={Bayern} alt="logo" onClick={this.addToCounter} />
-                <img id="Chelsea" className="logos" src={Chelsea} alt="logo" onClick={this.addToCounter} />
-                <img id="Juve" className="logos" src={Juve} alt="logo" onClick={this.addToCounter} />
-                <img id="Liverpool" className="logos" src={Liverpool} alt="logo" onClick={this.addToCounter} />
-                <img id="ManU" className="logos" src={ManU} alt="logo" onClick={this.addToCounter} />
-                <img id="PSG" className="logos" src={PSG} alt="logo" onClick={this.addToCounter} />
-                <img id="River" className="logos" src={River} alt="logo" onClick={this.addToCounter} />
-                <img id="RM" className="logos" src={RM} alt="logo" onClick={this.addToCounter} />
-                <img id="Roma" className="logos" src={Roma} alt="logo" onClick={this.addToCounter} />
-                <img id="Wolves" className="logos" src={Wolves} alt="logo" onClick={this.addToCounter} />
-                <img id="Ajax" className="logos" src={Ajax} alt="logo" onClick={this.addToCounter} />
-                <img id="Arsenal" className="logos" src={Arsenal} alt="logo" onClick={this.addToCounter} />
-                <img id="Galaxy" className="logos" src={Galaxy} alt="logo" onClick={this.addToCounter} />
-                <img id="Milan" className="logos" src={Milan} alt="logo" onClick={this.addToCounter} />
-            </div>
-        ];
     }
 }
 
