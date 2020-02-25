@@ -1,7 +1,7 @@
 import React from 'react'
 import './nav.css'
 
-function Nav() {
+function Nav(props) {
     return (
         <nav className="navigation">
             <div className="logo">
@@ -13,7 +13,7 @@ function Nav() {
 
 
             <div className="nav_links">
-                <div className="link" id="yourScore">Your Score: </div>
+                <div className="link" id="yourScore">Your Score: {props.correctGuesses}</div>
                 <div className="link" id="maxScore">Maximum Score: </div>
             </div>
 
