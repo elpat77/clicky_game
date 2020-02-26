@@ -12,7 +12,7 @@ function Nav(props) {
             </div>
             <div className="nav_links">
                 <div className="link" id="yourScore">Your Score: {props.correctGuesses}</div>
-                <div className="link" id="maxScore">Maximum Score: </div>
+                <div className="link" id="maxScore">Maximum Score: {props.maxScore}</div>
             </div>
 
         </nav>

@@ -64,14 +64,27 @@ class Logos extends Component {
 
         console.log("clicked on...", e.target.id)
         let selected = this.state.selected;
-        console.log("selected array", selected)
         let correctGuesses = this.state.correctGuesses + 1;
+        let maxScore = this.state.maxScore;
 
         for (let i = 0; i < selected.length; i++) {
+
             //break game, calculate scores, and restart
             if (selected[i] === e.target.id) {
+                let newScore = this.state.maxScore;
+                if (this.state.correctGuesses > this.state.maxScore) {
+                    newScore = this.state.correctGuesses;
+                }
+
                 console.log("oh! selected before...")
-                this.setState({ selected: [], correctGuesses: 0 })
+
+                this.setState({
+                    selected: [],
+                    correctGuesses: 0,
+                    maxScore: newScore,
+                });
+                console.log("new score", newScore)
+                console.log("correct", correctGuesses)
                 return;
 
             } else {
@@ -84,7 +97,7 @@ class Logos extends Component {
             }
         }
         selected.push(e.target.id)
-        this.setState({ selected: selected, correctGuesses })
+        this.setState({ selected: selected, correctGuesses, maxScore })
         //this.setState({ counter: this.state.counter + 1 });
     }
 
@@ -99,7 +112,7 @@ class Logos extends Component {
         })
         return (
             <div>
-                <NAV correctGuesses={this.state.correctGuesses} />
+                <NAV correctGuesses={this.state.correctGuesses} maxScore={this.state.maxScore} />
                 {total}
             </div>
         )
