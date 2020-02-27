@@ -2,6 +2,7 @@
     display:flex;
     justify-content: space-around;
     height: 18vh;
+    margin-top: 2vh;
     width:auto;
     background-color: rgba(53, 75, 199, 0.808);
 }

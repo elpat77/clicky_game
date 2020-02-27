@@ -6,6 +6,17 @@
 
 .logoContainer {
     margin-left: 45px;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
+.App {
+    background: url("../../Images/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: cover;
+    background-position: right;
+}
+
+#juventus, #bayern, #liverpool, #psg, #wolves, #arsenal, #galaxy {
+    background-color: white;
+}
