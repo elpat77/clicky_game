@@ -50,7 +50,7 @@ class Logos extends Component {
             winner: true,
             correctGuesses: 0,
             maxScore: 0,
-            alert: 'Click on any logo to start',
+            alert: 'Select each logo once and only once...',
             data: picArr,
 
         };
@@ -82,12 +82,13 @@ class Logos extends Component {
 
                 this.setState({
                     selected: [],
-                    alert: "Logo already chosen, try again!",
+                    // alert: "Logo already chosen, try again!",
                     correctGuesses: 0,
                     shuffle: display,
                     maxScore: newScore,
                     winner: false
                 });
+                setTimeout(function () { alert("Sorry game over, try again") });
                 console.log("new score", newScore)
                 console.log("correct", correctGuesses)
                 return;
@@ -97,10 +98,12 @@ class Logos extends Component {
                     this.setState({
                         selected: [],
                         shuffle: display,
-                        alert: 'Congratulations you win!',
                         winner: true
                     })
+                    setTimeout(function () { alert("Congratulations you win!") });
+                    return;
                 }
+
             }
         }
         selected.push(e.target.id)
