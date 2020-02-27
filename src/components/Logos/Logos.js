@@ -50,7 +50,7 @@ class Logos extends Component {
             winner: true,
             correctGuesses: 0,
             maxScore: 0,
-            alert: 'Select each logo once and only once...',
+            alert: 'Click on any logo to start',
             data: picArr,
 
         };
@@ -98,12 +98,11 @@ class Logos extends Component {
                     this.setState({
                         selected: [],
                         shuffle: display,
+                        alert: 'Congratulations you win!',
                         winner: true
                     })
-                    setTimeout(function () { alert("Congratulations you win!") });
-                    return;
                 }
-
+                // setTimeout(function () { alert("Congratulations you win!") });
             }
         }
         selected.push(e.target.id)
