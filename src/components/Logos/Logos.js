@@ -47,7 +47,6 @@ class Logos extends Component {
         super();
         this.state = {
             selected: [],
-            winner: true,
             correctGuesses: 0,
             maxScore: 0,
             alert: 'Click on any logo to start',
@@ -70,10 +69,9 @@ class Logos extends Component {
         let maxScore = this.state.maxScore;
 
         for (let i = 0; i < selected.length; i++) {
-
+            let newScore = this.state.maxScore;
             //break game, calculate scores, and restart
             if (selected[i] === e.target.id) {
-                let newScore = this.state.maxScore;
                 if (this.state.correctGuesses > this.state.maxScore) {
                     newScore = this.state.correctGuesses;
                 }
@@ -84,25 +82,26 @@ class Logos extends Component {
                     selected: [],
                     // alert: "Logo already chosen, try again!",
                     correctGuesses: 0,
-                    shuffle: display,
                     maxScore: newScore,
-                    winner: false
                 });
-                setTimeout(function () { alert("Sorry game over, try again") });
+                alert("Sorry game over, try again");
                 console.log("new score", newScore)
                 console.log("correct", correctGuesses)
                 return;
 
             } else {
-                if (correctGuesses >= 16) {
+                if (correctGuesses === 16) {
+                    newScore = this.state.correctGuesses;
                     this.setState({
                         selected: [],
-                        shuffle: display,
-                        alert: 'Congratulations you win!',
-                        winner: true
-                    })
+                        correctGuesses: 0,
+                        maxScore: correctGuesses,
+                        // alert: 'Congratulations you win!',                      
+                    });
+                    alert("Congratulations you win!");
+                    return;
                 }
-                // setTimeout(function () { alert("Congratulations you win!") });
+
             }
         }
         selected.push(e.target.id)
