@@ -1,18 +1,16 @@
 .navigation {
     display:flex;
     justify-content: space-around;
-    height: 12vh;
-    background-color: rgb(214, 99, 99);
+    height: 18vh;
+    width:auto;
+    background-color: rgba(53, 75, 199, 0.808);
 }
 
 .logo {
     display: flex;
     align-items: center;
 }
-/* .instruction {
-    display: flex;
-    align-items: center;
-} */
+
 
 .nav_links {
     display: flex;

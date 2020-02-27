@@ -9,7 +9,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="row mx-auto justify-content-center mt-5 col-md-6">
+        <div className="row mx-auto col-md-6">
           <Logos />
         </div>
       </div>

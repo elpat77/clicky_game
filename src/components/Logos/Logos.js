@@ -47,17 +47,18 @@ class Logos extends Component {
         super();
         this.state = {
             selected: [],
-            correct: true,
+            winner: true,
             correctGuesses: 0,
             maxScore: 0,
             alert: 'Click on any logo to start',
-            shuffle: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+            data: picArr,
+
         };
         this.addToScore = this.addToScore.bind(this);
     }
 
     addToScore(e) {
-        let display = this.state.shuffle;
+        let display = this.state.data;
         console.log("arr", display)
         display.sort(() => {
             return 0.5 - Math.random();
@@ -67,7 +68,6 @@ class Logos extends Component {
         let selected = this.state.selected;
         let correctGuesses = this.state.correctGuesses + 1;
         let maxScore = this.state.maxScore;
-        let shuffle = this.state.shuffle;
 
         for (let i = 0; i < selected.length; i++) {
 
@@ -84,7 +84,9 @@ class Logos extends Component {
                     selected: [],
                     alert: "Logo already chosen, try again!",
                     correctGuesses: 0,
+                    shuffle: display,
                     maxScore: newScore,
+                    winner: false
                 });
                 console.log("new score", newScore)
                 console.log("correct", correctGuesses)
@@ -93,20 +95,16 @@ class Logos extends Component {
             } else {
                 if (correctGuesses >= 16) {
                     this.setState({
+                        selected: [],
                         shuffle: display,
                         alert: 'Congratulations you win!',
+                        winner: true
                     })
                 }
-
             }
         }
         selected.push(e.target.id)
         this.setState({ selected: selected, correctGuesses, maxScore })
-        //this.setState({counter: this.state.counter + 1 });
-    }
-
-    setLogoData(data) {
-        this.setState({ logoData: data })
     }
 
     render() {
@@ -115,8 +113,10 @@ class Logos extends Component {
         })
         return (
             <div>
-                <NAV correctGuesses={this.state.correctGuesses} maxScore={this.state.maxScore} alert={this.state.alert} />
                 <div>
+                    <NAV correctGuesses={this.state.correctGuesses} maxScore={this.state.maxScore} alert={this.state.alert} />
+                </div>
+                <div className="logoContainer">
                     {total}
                 </div>
             </div>
